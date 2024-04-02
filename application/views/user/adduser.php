@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add User</title>
+    <title>CI-Add User</title>
     <link rel="shortcut icon" href="https://super-monitoring.com/blog/wp-content/uploads/2022/10/codeigniter.png.webp"
         type="image/x-icon">
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+        integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
     <style>
         /* Add custom styles if needed */
         .form-group {
@@ -40,7 +42,7 @@
         <div class="form-group">
             <label for="age">Age:</label>
             <div class="input-group">
-                <input type="text" class="form-control <?php echo form_error('age') ? 'is-invalid' : ''; ?>" id="age"
+                <input type="number" class="form-control <?php echo form_error('age') ? 'is-invalid' : ''; ?>" id="age"
                     name="age" value="<?php echo set_value('age'); ?>">
                 <?php echo form_error('age', '<div class="invalid-feedback">', '</div>'); ?>
             </div>
@@ -67,8 +69,8 @@
             <!-- Display password error -->
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <a href="<?php echo site_url('user/index'); ?>" class="btn btn-danger">Cancel</a>
+        <button type="submit" class="btn btn-primary"><i class="bi bi-check-lg"></i> Submit</button>
+        <a href="<?php echo site_url('user/index'); ?>" class="btn btn-danger"><i class="bi bi-x-lg"></i> Cancel</a>
 
         <?php echo form_close(); ?>
     </div>

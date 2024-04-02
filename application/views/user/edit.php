@@ -4,10 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit User</title>
+    <title>CI-Edit User</title>
     <link rel="shortcut icon" href="https://super-monitoring.com/blog/wp-content/uploads/2022/10/codeigniter.png.webp">
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+        integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
     <style>
         /* Add custom styles if needed */
         .form-group {
@@ -45,8 +47,8 @@
             <input class="form-control" type="password" name="password" value="<?php echo $user['password']; ?>">
         </div>
         <div class='d-flex'>
-            <button class="btn btn-primary" type="submit">Update</button>
-            <div class='px-3'> <a href="index.php"><button class="btn btn-danger px-3">Cancel</button></a></div>
+            <button class="btn btn-primary" type="submit"><i class="bi bi-folder-check"></i> Update</button>
+            <div class='px-3'> <a href="index.php"><button class="btn btn-danger px-3"><i class="bi bi-x-lg"></i> Cancel</button></a></div>
         </div>
         <?php echo form_close(); ?>
     </div>

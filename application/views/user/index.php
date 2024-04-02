@@ -19,7 +19,7 @@
     <div class="container mt-3">
         <div class="container p-2">
             <h2 class='text-center mt-3'>CodeIgniter User Dashboard</h2>
-            <a class="btn btn-warning mt-4 mb-2" href="<?php echo base_url('index.php/user/create'); ?>"><i
+            <a class="btn btn-success mt-4 mb-2" href="<?php echo base_url('index.php/user/create'); ?>"><i
                     class="bi bi-person-fill-add"></i> Add User</a>
         </div>
         <table id="userTable" class="table table-striped">
@@ -56,11 +56,18 @@
                             <?php echo $user['password']; ?>
                         </td>
                         <td>
-                            <a class="btn btn-sm btn-primary"
-                                href="<?php echo base_url('index.php/user/edit/' . $user['id']); ?>">Edit</a>
-                            <a class="btn btn-sm btn-danger"
-                                href="<?php echo base_url('index.php/user/delete/' . $user['id']); ?>">Delete</a>
+                            <a class="btn btn-sm btn-outline-primary"
+                                href="<?php echo base_url('index.php/user/edit/' . $user['id']); ?>">
+                                <i class="bi bi-pencil"></i>
+                                <span class="ml-1">Edit</span>
+                            </a>
+                            <a class="btn btn-sm btn-outline-danger"
+                                href="<?php echo base_url('index.php/user/delete/' . $user['id']); ?>">
+                                <i class="bi bi-trash3-fill"></i>
+                                <span class="ml-1">Delete</span>
+                            </a>
                         </td>
+
                     </tr>
                 <?php endforeach; ?>
             </tbody>
