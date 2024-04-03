@@ -26,13 +26,24 @@ ini_set('display_errors', 1);
     <div class="container mt-3">
         <div class="container p-2">
             <h2 class='text-center mt-3'>CodeIgniter User Dashboard</h2>
-            <a class="btn btn-success mt-4 mb-2" href="<?php echo base_url('user/create'); ?>"><i
+            <a class="btn btn-primary mt-4 mb-2" href="<?php echo base_url('user/create'); ?>"><i
                     class="bi bi-person-fill-add"></i><strong> Add User</strong>
             </a>
-            <a class="btn btn-danger mt-4 mb-2 float-right" href="<?php echo base_url('logout'); ?>"><i
+            <a class="btn btn-danger mt-4 mb-2 float-right" href="<?php echo base_url('login/logout'); ?>"><i
                     class="bi bi-box-arrow-right"></i><strong> Logout</strong>
             </a>
         </div>
+        <?php if ($this->session->flashdata('error')): ?>
+            <div class="alert alert-danger" role="alert">
+                <?php echo $this->session->flashdata('error'); ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if (isset($success_message)): ?>
+            <div class="alert alert-success" role="alert">
+                <?php echo $success_message; ?>
+            </div>
+        <?php endif; ?>
         <table id="userTable" class="table table-striped">
             <thead>
                 <tr>

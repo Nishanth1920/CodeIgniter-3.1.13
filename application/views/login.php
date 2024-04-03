@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD-Login</title>
     <link rel="shortcut icon" href="https://super-monitoring.com/blog/wp-content/uploads/2022/10/codeigniter.png.webp"
-        type="image/x-icon" ;">
+        type="image/x-icon">
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
@@ -18,6 +18,7 @@
 
         body {
             background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
         }
 
         .card {
@@ -35,6 +36,7 @@
         .card-body {
             background-color: #ffffff;
             border-radius: 0 0 15px 15px;
+            padding: 30px;
         }
 
         .form-group label {
@@ -54,42 +56,97 @@
         .btn-link {
             color: #343a40;
         }
+
+        .form-check-input {
+            margin-top: 8px;
+        }
+
+        .form-check-label {
+            margin-left: 10px;
+            margin-top: 4px;
+        }
+
+        /* Custom styling for form inputs */
+        .form-control {
+            border-radius: 20px;
+            border-color: #ced4da;
+        }
+
+        /* Additional styles for the form */
+        .login-form {
+            margin-top: 50px;
+        }
+
+        .login-form .btn {
+            border-radius: 20px;
+            margin-top: 20px;
+        }
+
+        /* Password strength meter styles */
+        .strength-meter {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .strength-meter .strength-text {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .strength-meter .progress {
+            height: 10px;
+            border-radius: 10px;
+        }
+
+        /* Adjustments for small devices */
+        @media (max-width: 576px) {
+            .login-form {
+                margin-top: 20px;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <div class="container mt-5">
-        <div class="row justify-content-center">
+    <div class="container">
+        <div class="row justify-content-center login-form">
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header text-center">
                         <h3>CRUD-Login</h3>
                     </div>
                     <div class="card-body">
+                        <div id="error-message" class="alert alert-danger" style="display: none;"></div>
                         <?php if ($this->session->flashdata('error')): ?>
-                            <div class="alert alert-danger" role="alert">
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                 <?php echo $this->session->flashdata('error'); ?>
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
                         <?php endif; ?>
-                        <?php echo form_open('login'); ?>
+                        <?php echo form_open('login', array('id' => 'login-form')); ?>
                         <div class="form-group">
                             <label for="username">Username:</label>
-                            <input type="text" class="form-control" id="username" name="username">
+                            <input type="text" placeholder="Username"
+                                class="form-control <?php echo form_error('username') ? 'is-invalid' : '' ?>"
+                                id="username" name="username" value="<?php echo set_value('username'); ?>">
                         </div>
                         <div class="form-group">
                             <label for="password">Password:</label>
                             <div class="input-group">
-                                <input type="password" class="form-control" id="password" name="password">
+                                <input type="password" placeholder="Password"
+                                    class="form-control <?php echo form_error('password') ? 'is-invalid' : '' ?>"
+                                    id="password" name="password">
                                 <div class="input-group-append">
                                     <span class="input-group-text password-toggle" onclick="togglePasswordVisibility()">
                                         <i class="fa fa-eye-slash"></i>
                                     </span>
                                 </div>
                             </div>
-                        </div>
-                        <div class="form-group form-check">
-                            <input type="checkbox" class="form-check-input" id="rememberMe">
-                            <label class="form-check-label" for="rememberMe">Remember Me</label>
+                            <div class="invalid-feedback">
+                                <?php echo form_error('password'); ?>
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-warning btn-block">Login</button>
                         <a href="password_recovery.php" class="btn btn-link btn-block">Forgot Password?</a>
@@ -102,6 +159,7 @@
 
     <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function togglePasswordVisibility() {
             var passwordInput = document.getElementById("password");
@@ -116,30 +174,31 @@
                 icon.classList.add("fa-eye-slash");
             }
         }
-
-        // Store username and password in local storage if "Remember Me" is checked
-        document.getElementById("rememberMe").addEventListener("change", function () {
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
-            if (this.checked) {
-                localStorage.setItem("username", username);
-                localStorage.setItem("password", password);
-            } else {
-                localStorage.removeItem("username");
-                localStorage.removeItem("password");
-            }
-        });
-
-        // Prefill the login fields if stored credentials are found
-        window.onload = function () {
-            var rememberedUsername = localStorage.getItem("username");
-            var rememberedPassword = localStorage.getItem("password");
-            if (rememberedUsername && rememberedPassword) {
-                document.getElementById("username").value = rememberedUsername;
-                document.getElementById("password").value = rememberedPassword;
-            }
-        };
     </script>
+    <script>
+        $(document).ready(function () {
+            $('#login-form').submit(function (e) {
+                e.preventDefault(); // Prevent normal form submission
+
+                var formData = $(this).serialize(); // Serialize form data
+
+                $.ajax({
+                    type: 'POST',
+                    url: '<?php echo base_url("login/ajax_login"); ?>', // Corrected URL
+                    data: formData,
+                    dataType: 'json',
+                    success: function (response) {
+                        if (response.success) {
+                            window.location.href = '<?php echo base_url("user"); ?>'; // Redirect to user page on success
+                        } else {
+                            $('#error-message').html(response.error).show(); // Display error message
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
 </body>
 
 </html>

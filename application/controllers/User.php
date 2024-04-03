@@ -22,6 +22,10 @@ class User extends CI_Controller
         // Check if the user is logged in before loading the view
         if ($this->session->userdata('logged_in')) {
             $data['users'] = $this->user_model->get_users();
+
+            // Display success message if it exists
+            $data['success_message'] = $this->session->flashdata('success_message');
+
             $this->load->view('user/index', $data);
         } else {
             redirect('login'); // Redirect to the login page if not logged in
@@ -59,13 +63,13 @@ class User extends CI_Controller
                 'password' => $this->input->post('password'), // Remove the extra $
             );
             $this->user_model->insert_user($data);
+
+            // Set success message
+            $this->session->set_flashdata('success_message', 'Record added successfully.');
+
             redirect('user');
         }
     }
-
-
-
-
 
     public function edit($id)
     {
@@ -74,23 +78,40 @@ class User extends CI_Controller
     }
 
     public function update($id)
-    {
-        $data = array(
-            'username' => $this->input->post('username'),
-            'email' => $this->input->post('email'),
-            // 'mobile' => $this->input->post('mobile'),
-            'age' => $this->input->post('age'),
-            'gender' => $this->input->post('gender'),
-            'password' => $this->input->post('password'),
-        );
-        $this->user_model->update_user($id, $data);
-        redirect('user');
-    }
+{
+    // Get the username before updating
+    $old_user = $this->user_model->get_user($id);
+    $old_username = $old_user['username'];
 
-    public function delete($id)
-    {
-        $this->user_model->delete_user($id);
-        redirect('user/index');
-    }
+    $data = array(
+        'username' => $this->input->post('username'),
+        'email' => $this->input->post('email'),
+        // 'mobile' => $this->input->post('mobile'),
+        'age' => $this->input->post('age'),
+        'gender' => $this->input->post('gender'),
+        'password' => $this->input->post('password'),
+    );
+    $this->user_model->update_user($id, $data);
+
+    // Set success message with username
+    $this->session->set_flashdata('success_message', 'Record "'.$old_username.'" updated successfully.');
+
+    redirect('user');
+}
+
+public function delete($id)
+{
+    // Get the username before deleting
+    $user = $this->user_model->get_user($id);
+    $username = $user['username'];
+
+    $this->user_model->delete_user($id);
+
+    // Set success message with username
+    $this->session->set_flashdata('success_message', 'Record "'.$username.'" deleted successfully.');
+
+    redirect('user');
+}
+
 }
 ?>
