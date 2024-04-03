@@ -1,3 +1,10 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+// Start session
+// session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,8 +26,12 @@
     <div class="container mt-3">
         <div class="container p-2">
             <h2 class='text-center mt-3'>CodeIgniter User Dashboard</h2>
-            <a class="btn btn-success mt-4 mb-2" href="<?php echo base_url('index.php/user/create'); ?>"><i
-                    class="bi bi-person-fill-add"></i> Add User</a>
+            <a class="btn btn-success mt-4 mb-2" href="<?php echo base_url('user/create'); ?>"><i
+                    class="bi bi-person-fill-add"></i><strong> Add User</strong>
+            </a>
+            <a class="btn btn-danger mt-4 mb-2 float-right" href="<?php echo base_url('logout'); ?>"><i
+                    class="bi bi-box-arrow-right"></i><strong> Logout</strong>
+            </a>
         </div>
         <table id="userTable" class="table table-striped">
             <thead>
@@ -57,14 +68,14 @@
                         </td>
                         <td>
                             <a class="btn btn-sm btn-outline-primary"
-                                href="<?php echo base_url('index.php/user/edit/' . $user['id']); ?>">
+                                href="<?php echo base_url('user/edit/' . $user['id']); ?>">
                                 <i class="bi bi-pencil"></i>
-                                <span class="ml-1">Edit</span>
+                                <span class="ml-1"></span>
                             </a>
                             <a class="btn btn-sm btn-outline-danger"
-                                href="<?php echo base_url('index.php/user/delete/' . $user['id']); ?>">
+                                href="<?php echo base_url('user/delete/' . $user['id']); ?>">
                                 <i class="bi bi-trash3-fill"></i>
-                                <span class="ml-1">Delete</span>
+                                <span class="ml-1"></span>
                             </a>
                         </td>
 
