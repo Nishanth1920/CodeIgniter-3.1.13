@@ -37,7 +37,8 @@ ini_set('display_errors', 1);
     </style>
 </head>
 
-<body>
+<body style="background-color: #f0f0f0;">
+
     <div class="container mt-3">
         <div class="container p-2">
             <h2 class='text-center mt-3'>CodeIgniter User Dashboard</h2>
@@ -60,7 +61,7 @@ ini_set('display_errors', 1);
             </div>
         <?php endif; ?>
         <table id="userTable" class="table">
-            <thead class="thead-light">
+            <thead>
                 <tr>
                     <th>ID</th>
                     <th>Username</th>

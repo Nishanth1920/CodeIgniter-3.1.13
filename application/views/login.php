@@ -21,6 +21,7 @@
             /* Adjust the width as needed */
             margin: 0 auto;
             /* Center the container horizontally */
+
         }
 
         body {
@@ -29,15 +30,17 @@
         }
 
         .card {
-            border: none;
+            /* border: none; */
             border-radius: 15px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
         }
 
         .card-header {
             background-color: #343a40;
             color: white;
-            border-radius: 15px 15px 0 0;
+            border: 20px;
+            border-radius: 15px 15px 0 0 !important;
         }
 
         .card-body {
@@ -114,7 +117,7 @@
     </style>
 </head>
 
-<body>
+<body style="background-color: #f0f0f0;">
     <div class="custom-container"> <!-- Change container class to container-sm for smaller width -->
         <div class="row justify-content-center login-form">
             <div class="col-md-6">
@@ -124,14 +127,6 @@
                     </div>
                     <div class="card-body">
                         <div id="error-message" class="alert alert-danger" style="display: none;"></div>
-                        <?php if ($this->session->flashdata('error')): ?>
-                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                <?php echo $this->session->flashdata('error'); ?>
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        <?php endif; ?>
                         <?php echo form_open('login', array('id' => 'login-form')); ?>
                         <div class="form-group">
                             <label for="username">Username:</label>
@@ -156,7 +151,7 @@
                             </div>
                         </div>
                         <button type="submit" class="btn btn-warning btn-block">Login</button>
-                        <a href="password_recovery.php" class="btn btn-link btn-block">Forgot Password?</a>
+                        <a href="" class="btn btn-link btn-block">Forgot Password?</a>
                         <?php echo form_close(); ?>
                     </div>
                 </div>

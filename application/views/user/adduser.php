@@ -14,7 +14,7 @@
     <style>
         /* Add custom styles if needed */
         body {
-            background-color: #f8f9fa;
+            background-color: #f0f0f0;
             font-family: Arial, sans-serif;
         }
 
@@ -22,11 +22,13 @@
             max-width: 500px;
             /* Reduced width */
             margin-top: 5rem;
-            background-color: #ffffff;
+            background-color: #f0f0f0;
+            ;
             padding: 20px 30px;
             /* Adjusted padding to reduce height */
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.2);
+            /* Increased shadow */
         }
 
         .form-group {
