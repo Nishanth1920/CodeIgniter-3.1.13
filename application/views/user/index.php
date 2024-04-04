@@ -20,17 +20,32 @@ ini_set('display_errors', 1);
         integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
     <!-- DataTables CSS -->
     <link href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <style>
+        .btn-hover {
+            border-radius: 17px;
+            /* Adding border radius */
+            transition: background-color 0.3s, border-color 0.3s;
+            /* Adding transition for smooth hover effect */
+        }
+
+        .btn-hover:hover {
+            background-color: black;
+            /* Change background color on hover */
+            border-color: black;
+            /* Change border color on hover */
+        }
+    </style>
 </head>
 
 <body>
     <div class="container mt-3">
         <div class="container p-2">
             <h2 class='text-center mt-3'>CodeIgniter User Dashboard</h2>
-            <a class="btn btn-primary mt-4 mb-2" href="<?php echo base_url('user/create'); ?>"><i
+            <a class="btn btn-primary mt-4 mb-3 btn-hover" href="<?php echo base_url('user/create'); ?>"><i
                     class="bi bi-person-fill-add"></i><strong> Add User</strong>
             </a>
-            <a class="btn btn-danger mt-4 mb-2 float-right" href="<?php echo base_url('login/logout'); ?>"><i
-                    class="bi bi-box-arrow-right"></i><strong> Logout</strong>
+            <a class="btn btn-danger mt-4 mb-2 float-right btn-hover" href="<?php echo base_url('login/logout'); ?>"><i
+                    class="bi bi-box-arrow-right"></i><strong> Logout </strong>
             </a>
         </div>
         <?php if ($this->session->flashdata('error')): ?>
@@ -44,8 +59,8 @@ ini_set('display_errors', 1);
                 <?php echo $success_message; ?>
             </div>
         <?php endif; ?>
-        <table id="userTable" class="table table-striped">
-            <thead>
+        <table id="userTable" class="table">
+            <thead class="thead-light">
                 <tr>
                     <th>ID</th>
                     <th>Username</th>

@@ -16,6 +16,13 @@
             cursor: pointer;
         }
 
+        .custom-container {
+            max-width: 850px;
+            /* Adjust the width as needed */
+            margin: 0 auto;
+            /* Center the container horizontally */
+        }
+
         body {
             background-color: #f8f9fa;
             font-family: Arial, sans-serif;
@@ -108,7 +115,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="custom-container"> <!-- Change container class to container-sm for smaller width -->
         <div class="row justify-content-center login-form">
             <div class="col-md-6">
                 <div class="card">

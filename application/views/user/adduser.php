@@ -13,15 +13,78 @@
         integrity="sha384-4LISF5TTJX/fLmGSxO53rV4miRxdg84mZsxmO8Rx5jGtp/LbrixFETvWa5a6sESd" crossorigin="anonymous">
     <style>
         /* Add custom styles if needed */
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 500px;
+            /* Reduced width */
+            margin-top: 5rem;
+            background-color: #ffffff;
+            padding: 20px 30px;
+            /* Adjusted padding to reduce height */
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
         .form-group {
             margin-bottom: 1rem;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        select {
+            border: 1px solid #ced4da;
+            border-radius: 10px;
+            font-size: 14px;
+            padding: 10px;
+            width: 100%;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        button[type="submit"],
+        a.btn {
+            border: none;
+            border-radius: 20px;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button[type="submit"]:hover,
+        a.btn:hover {
+            background-color: black;
+            color: #fff;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
         }
     </style>
 </head>
 
 <body>
-    <div class="container-sm mt-5">
-        <h2 class="mb-4">Add User</h2>
+    <div class="container mt-5">
+        <h2 class="mb-3">Add User</h2>
         <?php echo form_open('user/store', 'class="needs-validation"'); ?>
 
         <div class="form-group">
