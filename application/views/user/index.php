@@ -94,13 +94,11 @@ ini_set('display_errors', 1);
                             <?php echo $user['password']; ?>
                         </td>
                         <td>
-                            <a class="btn btn-sm btn-outline-primary"
-                                href="<?php echo base_url('user/edit/' . $user['id']); ?>">
+                            <a class="btn btn-sm btn-primary" href="<?php echo base_url('user/edit/' . $user['id']); ?>">
                                 <i class="bi bi-pencil"></i>
                                 <span class="ml-1"></span>
                             </a>
-                            <a class="btn btn-sm btn-outline-danger"
-                                href="<?php echo base_url('user/delete/' . $user['id']); ?>">
+                            <a class="btn btn-sm btn-danger" href="<?php echo base_url('user/delete/' . $user['id']); ?>">
                                 <i class="bi bi-trash3-fill"></i>
                                 <span class="ml-1"></span>
                             </a>
