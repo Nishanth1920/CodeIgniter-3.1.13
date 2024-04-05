@@ -1,8 +1,6 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-// Start session
-// session_start();
 
 ?>
 <!DOCTYPE html>
@@ -69,6 +67,7 @@ ini_set('display_errors', 1);
                     <th>Age</th>
                     <th>Gender</th>
                     <th>Password</th>
+                    <th>Mobile</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -84,6 +83,7 @@ ini_set('display_errors', 1);
                         <td>
                             <?php echo $user['email']; ?>
                         </td>
+                        
                         <td>
                             <?php echo $user['age']; ?>
                         </td>
@@ -92,6 +92,9 @@ ini_set('display_errors', 1);
                         </td>
                         <td>
                             <?php echo $user['password']; ?>
+                        </td>
+                        <td>
+                            <?php echo $user['mobile']; ?>
                         </td>
                         <td>
                             <a class="btn btn-sm btn-primary" href="<?php echo base_url('user/edit/' . $user['id']); ?>">

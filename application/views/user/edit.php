@@ -107,6 +107,10 @@
             <input class="form-control" type="text" name="age" value="<?php echo $user['age']; ?>">
         </div>
         <div class="form-group">
+            <label>Mobile No:</label>
+            <input class="form-control" type="text" name="mobile" value="<?php echo $user['mobile']; ?>">
+        </div>
+        <div class="form-group">
             <label>Gender:</label>
             <input class="form-control" type="text" name="gender" value="<?php echo $user['gender']; ?>">
         </div>

@@ -103,13 +103,22 @@
                 name="email" value="<?php echo set_value('email'); ?>">
             <?php echo form_error('email', '<div class="invalid-feedback">', '</div>'); ?> <!-- Display email error -->
         </div>
-
         <div class="form-group">
             <label for="age">Age:</label>
             <div class="input-group">
                 <input type="number" class="form-control <?php echo form_error('age') ? 'is-invalid' : ''; ?>" id="age"
                     name="age" value="<?php echo set_value('age'); ?>">
                 <?php echo form_error('age', '<div class="invalid-feedback">', '</div>'); ?>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="mobile">Mobile No:</label>
+            <div class="input-group">
+                <input type="text" class="form-control <?php echo form_error('mobile') ? 'is-invalid' : ''; ?>" id="mobile"
+                    name="mobile" value="<?php echo set_value('mobile'); ?>">
+                <?php echo form_error('mobile', '<div class="invalid-feedback">', '</div>'); ?>
             </div>
         </div>
 

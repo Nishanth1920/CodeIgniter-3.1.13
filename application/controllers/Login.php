@@ -24,6 +24,7 @@ class Login extends CI_Controller
             $username = $this->input->post('username');
             $password = $this->input->post('password');
 
+
             if (empty($username) || empty($password)) {
                 // Input fields are empty
                 $response = array('success' => false, 'error' => 'Input fields are empty.');
@@ -31,6 +32,8 @@ class Login extends CI_Controller
             } else {
                 // Hash the entered password using MD5
                 $hashed_password = substr(md5($password), 0, 10);
+                //     echo $hashed_password;
+                // exit();
 
                 // Fetch user details from the database
                 $user = $this->user_model->get_user_by_username($username);
