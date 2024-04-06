@@ -12,26 +12,26 @@ class User extends CI_Controller
         $this->load->helper('form');
 
         // Check if the user is logged in
-        // if (!$this->session->userdata('logged_in')) {
-        //     redirect('login'); // Redirect to the login page if not logged in
-        // }
+        if (!$this->session->userdata('logged_in')) {
+            redirect('login'); // Redirect to the login page if not logged in
+        }
     }
 
     public function index()
     {
         // // Check if the user is logged in before loading the view
-        // if ($this->session->userdata('logged_in')) {
+        if ($this->session->userdata('logged_in')) {
         // $data['users'] = $this->user_model->get_users();
         // Fetch users along with their mobile numbers
         $data['users'] = $this->user_model->get_users_with_mobile();
 
         //     // Display success message if it exists
-        //     $data['success_message'] = $this->session->flashdata('success_message');
+            $data['success_message'] = $this->session->flashdata('success_message');
 
         $this->load->view('user/index', $data);
-        // } else {
-        //     redirect('login'); // Redirect to the login page if not logged in
-        // }
+        } else {
+            redirect('login'); // Redirect to the login page if not logged in
+        }
     }
 
     public function create()
@@ -57,12 +57,7 @@ class User extends CI_Controller
             // Validation failed, redirect back to the form with validation errors
             $this->load->view('user/adduser');
         } else {
-            // Validation passed, proceed with storing data
-            // $password = $this->input->post('password');
-            // Hash the password
-            // $hashed_password = substr(md5($password), 0, 10);
-    
-            // Prepare data for insertion into userdetails table
+            
             $user_data = array(
                 'username' => $this->input->post('username'),
                 'email' => $this->input->post('email'),
